@@ -34,6 +34,10 @@ class Maze:
     def __init__(self,Longeur,Largeur):
         self.maze = [ [Noed(i,j) for i in range(Longeur)] for j in range(Largeur)]
 
+    def cellule(self,x,y):
+        return self.maze[x][y]
+
+
 if __name__=="__main__":
     Noeu = Noed(0,0)
     print(Noeu.allwalls())
@@ -46,3 +50,5 @@ if __name__=="__main__":
 
     Laby = Maze(10,10)
     print(Laby.maze)
+
+    print(Laby.cellule(0,0))
