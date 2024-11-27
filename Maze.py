@@ -1,3 +1,5 @@
+#Jaouen programmation
+
 import random #utile ?
 
 class Noed:
