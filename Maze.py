@@ -1,7 +1,4 @@
 #Jaouen programmation
-
-import random #utile ?
-
 class Noed:
     """
     Creation de la classe Noed:
