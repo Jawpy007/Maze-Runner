@@ -64,6 +64,7 @@ class Maze:
 
 
 if __name__=="__main__":
+    #Test de fonctionnement des fonctions de base
     Noeu = Noed(0,0)
     print(Noeu.allwalls())
     print(Noeu.coord())
