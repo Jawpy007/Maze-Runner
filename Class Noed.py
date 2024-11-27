@@ -1,13 +1,28 @@
-# Ecrit ton programme ici ;-)
+import random #utile ?
+
+
 class Noed:
+    """
+    Creation de la classe Noed:
+        x,y = coordonnée x,y
+        walls = une liste des mures qu'il possede
+        arriver = Defini si c'est l'arriver
+    """
     def __init__(self,x,y):
         self.x , self.y = x,y
         self.walls = {"N":True,"S":True,"E":True,"O":True}
+        self.arriver = False
 
     def getwalls(self):
+        """
+        retourne tous les murs qu'il possede ou pas
+        """
         return self.walls
 
     def allwalls(self):
+        """
+        retourne tous les murs qu'il possede uniquement
+        """
         for Bool in self.walls.values():
             if Bool == False:
                 return False
@@ -15,9 +30,16 @@ class Noed:
         return True
 
     def coord(self):
+        """
+        retourne les coordonnée d'une cellule
+        """
         return (self.x,self.y)
 
     def destroy(self,Who = None):
+        """
+        si aucun argument donnée detruit tous les murs
+        si donnée un point cardinaux en str(), detruit le murs correspondant si il existe
+        """
         Nord = {"N":False}
         Sud = {"S":False}
         Est = {"E":False}
@@ -29,6 +51,9 @@ class Noed:
            self.walls.update(Ouest)
         else:
             self.walls[Who] = False
+
+    def finale(self):
+        self.arriver = True
 
 class Maze:
     def __init__(self,Longeur,Largeur):
