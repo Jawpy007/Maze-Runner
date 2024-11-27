@@ -30,9 +30,19 @@ class Noed:
         else:
             self.walls[Who] = False
 
+class Maze:
+    def __init__(self,Longeur,Largeur):
+        self.maze = [ [Noed(i,j) for i in range(Longeur)] for j in range(Largeur)]
+
+if __name__=="__main__":
+    Noeu = Noed(0,0)
+    print(Noeu.allwalls())
+    print(Noeu.coord())
 
 
-a = {"N":True,"S":True,"E":True,"O":True}
-Nord = {"N":False}
-Sud = {"S":False}
-a.update([Nord,Sud])
+    print(Noeu.getwalls())
+    Noeu.destroy("E")
+    print(Noeu.getwalls())
+
+    Laby = Maze(10,10)
+    print(Laby.maze)
