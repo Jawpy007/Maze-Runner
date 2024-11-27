@@ -54,11 +54,35 @@ class Noed:
         self.arriver = True
 
 class Maze:
-    def __init__(self,Longeur,Largeur):
-        self.maze = [ [Noed(i,j) for i in range(Longeur)] for j in range(Largeur)]
-
+    def __init__(self,Longeur,hauteur):
+        self.maze = [ [Noed(i,j) for i in range(Longeur)] for j in range(hauteur)]
+        self.longeur = Longeur
+        self.hauteur = hauteur
     def cellule(self,x,y):
         return self.maze[x][y]
+
+
+    #Code pomper sur internet juste pour faciliter la comprehension le temps d'un affichage fait de nous meme
+    def __str__(self):
+        """Return a (crude) string representation of the maze."""
+
+        maze_rows = ['-' * self.longeur * 2]
+        for y in range(self.hauteur):
+            maze_row = ['|']
+            for x in range(self.hauteur):
+                if self.maze[x][y].walls['E']:
+                    maze_row.append(' |')
+                else:
+                    maze_row.append('  ')
+            maze_rows.append(''.join(maze_row))
+            maze_row = ['|']
+            for x in range(self.longeur):
+                if self.maze[x][y].walls['S']:
+                    maze_row.append('-+')
+                else:
+                    maze_row.append(' +')
+            maze_rows.append(''.join(maze_row))
+        return '\n'.join(maze_rows)
 
 
 if __name__=="__main__":
