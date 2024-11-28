@@ -10,6 +10,10 @@ class Noed:
         self.x , self.y = x,y
         self.walls = {"N":True,"S":True,"E":True,"O":True}
         self.arriver = False
+        self.debut = False
+
+    def is_arriver(self):
+        return self.arriver
 
     def getwalls(self):
         """
@@ -53,6 +57,9 @@ class Noed:
     def finale(self):
         self.arriver = True
 
+    def depart(self):
+        self.debut = True
+
 class Maze:
     def __init__(self,Longeur,hauteur):
         self.maze = [ [Noed(i,j) for i in range(Longeur)] for j in range(hauteur)]
@@ -60,6 +67,10 @@ class Maze:
         self.hauteur = hauteur
     def cellule(self,x,y):
         return self.maze[x][y]
+
+
+    def getmaze(self):
+        return self.maze
 
 
     #Code pomper sur internet juste pour faciliter la comprehension le temps d'un affichage fait de nous meme
@@ -83,6 +94,32 @@ class Maze:
                     maze_row.append(' +')
             maze_rows.append(''.join(maze_row))
         return '\n'.join(maze_rows)
+
+    def destroy_maze_walls(self, Noed, Who=None):
+                    """
+            si aucun argument donnée detruit tous les murs
+            si donnée un point cardinaux en str(), detruit le murs correspondant si il existe
+            """
+            if Who==None
+                destroy(self,Who = None)
+
+
+    def destroy(self,Who = None):
+            """
+            si aucun argument donnée detruit tous les murs
+            si donnée un point cardinaux en str(), detruit le murs correspondant si il existe
+            """
+            Nord = {"N":False}
+            Sud = {"S":False}
+            Est = {"E":False}
+            Ouest = {"O":False}
+            if Who == None:
+            self.walls.update(Nord)
+            self.walls.update(Sud)
+            self.walls.update(Est)
+            self.walls.update(Ouest)
+            else:
+                self.walls[Who] = False
 
 
 if __name__=="__main__":
