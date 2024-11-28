@@ -36,10 +36,10 @@ def dessiner_labyrinthe(canvas, maze):
             if murs['O']:
                 canvas.create_line(x1, y1, x1, y2, fill=couleur_mur, width=epaisseur_mur)  # Mur ouest
 
-    # Entrée
-    canvas.create_rectangle(entre,fill=couleur_debut, outline=couleur_debut)
-    # Sortie
-    canvas.create_rectangle(sortie, fill=couleur_sortie, outline=couleur_sortie)
+
+    for cellule in self.maze:
+        if cellule.is_arriver()==True:
+
 
 
 fenetre = tk.Tk()
