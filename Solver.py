@@ -62,17 +62,19 @@ class A_Star:
                     Murs = Laby.cellule(x,y).getwalls()
                     #print("je suis en ",x,y,"Mur de",Card,Murs[Card])
                     #print(Murs[Paire[Card]] == False,(x,y) not in Visite)
-                    if Murs[Paire[Card]] == False and (x,y) not in Visite:
-                        Discriminant = self.manhattan(Laby.cellule(x,y)) + self.pytha(Laby.cellule(x,y))
-                        Obti[(x,y)] = Discriminant
-                        if Laby.cellule(x,y).is_arriver():
-                            sortie = True
+                    if Murs[Paire[Card]] == False:
+                        if (x,y) not in Visite:
+                            Discriminant = self.manhattan(Laby.cellule(x,y)) + self.pytha(Laby.cellule(x,y))
+                            Obti[(x,y)] = Discriminant
+                            if Laby.cellule(x,y).is_arriver():
+                                sortie = True
 
             #print(Obti)
             Mieux = min(Obti)
             BestCell = Laby.cellule(Mieux[1],Mieux[0])
             Visite.append((Mieux[1],Mieux[0]))
             Cell_depart = BestCell
+            print(Visite)
 
         return Visite
 
@@ -81,33 +83,24 @@ class A_Star:
 
 
 if __name__=="__main__":
-    #creation labyrinthe basique
-    Laby = Maze(3,3)
+    Laby = Maze(3, 3)
 
+    # Detruire des murs pour creer un chemin
     Laby.maze[0][0].destroy("E")
     Laby.maze[1][0].destroy("O")
-
-    Laby.maze[0][0].depart()
-
-    Laby.maze[1][0].destroy("E")
-    Laby.maze[2][0].destroy("O")
-
     Laby.maze[1][0].destroy("S")
     Laby.maze[1][1].destroy("N")
+    Laby.maze[1][1].destroy("E")
+    Laby.maze[2][1].destroy("O")
+    Laby.maze[2][1].destroy("S")
+    Laby.maze[2][2].destroy("N")
 
-    Laby.maze[1][1].destroy("S")
-    Laby.maze[1][2].destroy("N")
+    Laby.maze[0][0].depart()
+    Laby.maze[2][2].finale()
+    print(Laby)
 
-    Laby.maze[1][2].finale()
-
-
-    #mise en place du solver
+    # Resolution du labyrinthe
     Solver = A_Star(Laby)
+    chemin = Solver.path()
+    print("Chemin trouvé :", chemin)
 
-
-
-    print(Solver.Coord_Fin())
-    print(Solver.Coord_Depart())
-    print(Solver.getlaby())
-
-    print(Solver.path())
