@@ -98,35 +98,36 @@ class Maze:
             maze_rows.append(''.join(maze_row))
         return '\n'.join(maze_rows)
 
-    def destroy_maze_walls(self, Noed, Who=None):
-                    """
-            si aucun argument donnée detruit tous les murs
-            si donnée un point cardinaux en str(), detruit le murs correspondant si il existe
-            """
-        if Who==None:
-            destroy(self,Who = None)
-            for i in self.getnear(Noed):
-                if self.maze[i[0],i[1]]
-        else:
-
-
     def getnear(self, noed, Who=None):
         coordN=noed.coord()
-        if Who="N":
+        if Who=="N":
             coordNear=[coordN[0],coordN[1]-1]
-        elif Who="S":
+        elif Who=="S":
             coordNear=[coordN[0],coordN[1]+1]
-        elif Who="O":
+        elif Who=="O":
             coordNear=[coordN[0]-1,coordN[1]]
-        elif Who="E":
+        elif Who=="E":
             coordNear=[coordN[0]+1,coordN[1]]
-        elif Who=None:
-            return(getnear(self, noed, "N")+ getnear(self, noed, "S")+ getnear(self, noed, "O")+ getnear(self, noed, "E"))
+        elif Who==None:
+            return(self.getnear(noed, "N")+ self.getnear(noed, "S")+ self.getnear(noed, "O")+ self.getnear(noed, "E"))
         if -1<coordNear[0]<self.longeur and -1<coordNear[1]<self.hauteur:
-            return [Who] + coordNear
+            return [[Who] + coordNear]
         else:
-            return None
-             
+            return [[Who] + [None]+ [None]]
+            
+    def destroy_maze_walls(self, Cell, Who=None):
+
+        Cell.destroy(Who)
+        for i in [self.getnear(Cell,Who)]:
+            if i[0]=="N" and i[1]!=None and i[2]!=None:
+                self.maze[i[1],i[2]].destroy(S)
+            elif i[0]=="S" and i[1]!=None and i[2]!=None:
+                self.maze[i[1],i[2]].destroy(N)
+            elif i[0]=="O" and i[1]!=None and i[2]!=None:
+                self.maze[i[1],i[2]].destroy(E)
+            elif i[0]=="E" and i[1]!=None and i[2]!=None:
+                self.maze[i[1],i[2]].destroy(O) 
+                     
 
 if __name__=="__main__":
     #Test de fonctionnement des fonctions de base
