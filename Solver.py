@@ -1,8 +1,6 @@
 #Jaouen Programmation
 from Maze import *
 
-
-
 class A_Star:
     def __init__(self,Laby):
         self.laby = Laby
@@ -24,15 +22,18 @@ class A_Star:
                     return j.coord()
         return None
 
-    def chemin_possible(self,Coord):
-        Ways = []
-
+    def manhattan(Location,Goal):
+        """calcule la distance a pied, case par case, et renvoie le nbr de case parcourut"""
+        pass
+    """
+    def
 
     def path(self):
         Depart = self.Coord_Depart()
         Arriver = self.Coord_Fin()
 
         pass
+    """
 
 
 if __name__=="__main__":
