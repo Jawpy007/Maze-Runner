@@ -5,6 +5,9 @@ class A_Star:
     def __init__(self,Laby):
         self.laby = Laby
 
+    def getlaby(self):
+        return self.laby
+
     def MoovAble(self):
         pass
 
@@ -16,24 +19,33 @@ class A_Star:
         return None
 
     def Coord_Depart(self):
-        for i in self.laby.getmaze():
+        for i in self.getlaby().getmaze():
             for j in i:
                 if j.debut == True:
                     return j.coord()
         return None
 
-    def manhattan(Location,Goal):
+    def manhattan(self,Goal):
         """calcule la distance a pied, case par case, et renvoie le nbr de case parcourut"""
+
+        Depart = self.Coord_Depart()
+        Arriver = self.Coord_Fin()
+        Laby = self.getlaby()
+        Cell_depart  = Laby.cellule(Depart[0],Depart[1])
+        Cell_arriver = Laby.cellule(Arriver[0],Arriver[1])
+
+
+
+
+    def pytha(Location,Goal):
         pass
-    """
-    def
 
     def path(self):
         Depart = self.Coord_Depart()
         Arriver = self.Coord_Fin()
 
         pass
-    """
+
 
 
 if __name__=="__main__":
@@ -52,4 +64,4 @@ if __name__=="__main__":
 
     print(Solver.Coord_Fin())
     print(Solver.Coord_Depart())
-
+    print(Solver.manhattan())
