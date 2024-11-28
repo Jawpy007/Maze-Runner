@@ -1,18 +1,19 @@
-#Tom Programmation
-
 import tkinter as tk
-from Maze import Maze  # Importer la classe Maze
+from Maze import Maze  # Importer votre classe Maze
 
+Laby = Maze(10,10)
+for ligne in Laby.getmaze():
+    for cellules in ligne:
+        if cellules.is_depart==True:
+            print(cellules)
 # Paramètres
 taille_cellule = 40  # Taille d'une cellule (en pixels)
 couleur_mur = "#444444"  # Couleur des murs
 couleur_chemin = "#DDDDDD"  # Couleur des chemins
-couleur_debut = "#00FF00"  # Couleur de l'entrée
-couleur_sortie = "#FF0000"  # Couleur de la sortie
 epaisseur_mur = 6  # Épaisseur des murs
 
 def dessiner_labyrinthe(canvas, maze):
-    """Dessine un labyrinthe esthétique sur le canvas."""
+    """Dessine un labyrinthe sur le canvas."""
     for ligne in range(maze.hauteur):
         for colonne in range(maze.longeur):
             x1 = colonne * taille_cellule
@@ -24,7 +25,7 @@ def dessiner_labyrinthe(canvas, maze):
             murs = cellule.getwalls()
 
             # Colorer le fond des chemins
-            canvas.create_rectangle(x1, y1, x2, y2, fill=couleur_chemin, outline=couleur_chemin)
+            case=canvas.create_rectangle(x1, y1, x2, y2, fill=couleur_chemin, outline=couleur_chemin)
 
             # Dessiner les murs avec des couleurs et épaisseurs définies
             if murs['N']:
@@ -36,14 +37,47 @@ def dessiner_labyrinthe(canvas, maze):
             if murs['O']:
                 canvas.create_line(x1, y1, x1, y2, fill=couleur_mur, width=epaisseur_mur)  # Mur ouest
 
+def changer_couleur_case(canvas, ligne, colonne, couleur):
+    """Change la couleur d'une case spécifique dans le labyrinthe."""
+    x1 = colonne * taille_cellule
+    y1 = ligne * taille_cellule
+    x2 = x1 + taille_cellule
+    y2 = y1 + taille_cellule
 
-    for cellule in self.maze:
-        if cellule.is_arriver()==True:
+    # Redessiner la case avec la nouvelle couleur
+    canvas.create_rectangle(x1, y1, x2, y2, fill=couleur, outline=couleur)
+
+for ligne in Laby.maze:
+    for cellules in ligne:
+        if cellules.is_depart==True:
+            changer_couleur_case(case,cellules.coord[0],cellule.coord[1],"green")
+
+for ligne in Laby.maze:
+    for cellules in ligne:
+        if cellules.is_==True:
+            changer_couleur_case(case,cellules.coord[0],cellule.coord[1],"green")
 
 
-
+# Initialisation de la fenêtre tkinter
 fenetre = tk.Tk()
-fenetre.title("Labyrinthe")
+fenetre.title("Labyrinthe avec changement de couleur")
+
+# Charger le labyrinthe
+
+
+# Dimensions du canvas
+canvas_largeur = labyrinthe.longeur * taille_cellule
+canvas_hauteur = labyrinthe.hauteur * taille_cellule
+
+# Création du canvas
+canvas = tk.Canvas(fenetre, width=canvas_largeur, height=canvas_hauteur, bg="white")
+canvas.pack()
+
+# Dessiner le labyrinthe
+dessiner_labyrinthe(canvas, labyrinthe)
+
+# Lancer l'interface graphique
+fenetre.mainloop()
 
 
 labyrinthe = Maze(10, 10)  # Labyrinthe de 10x10
