@@ -68,14 +68,14 @@ class Maze:
     def cellule(self,x,y):
         return self.maze[x][y]
 
+    def getmaze(self):
+        return self.maze
+
+
 
     #Code pomper sur internet juste pour faciliter la comprehension le temps d'un affichage fait de nous meme
     def __str__(self):
         """Return a (crude) string representation of the maze."""
-
-    def getmaze(self):
-        return self.maze
-
         maze_rows = ['-' * self.longeur * 2]
         for y in range(self.hauteur):
             maze_row = ['|']
