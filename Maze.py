@@ -10,6 +10,7 @@ class Noed:
         self.x , self.y = x,y
         self.walls = {"N":True,"S":True,"E":True,"O":True}
         self.arriver = False
+        self.debut = False
 
     def getwalls(self):
         """
@@ -52,6 +53,9 @@ class Noed:
 
     def finale(self):
         self.arriver = True
+
+    def depart(self):
+        self.debut = True
 
 class Maze:
     def __init__(self,Longeur,hauteur):
