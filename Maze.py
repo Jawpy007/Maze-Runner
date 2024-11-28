@@ -68,6 +68,7 @@ class Maze:
         self.maze = [ [Noed(i,j) for i in range(Longeur)] for j in range(hauteur)]
         self.longeur = Longeur
         self.hauteur = hauteur
+
     def cellule(self,x,y):
         return self.maze[x][y]
 
@@ -114,7 +115,7 @@ class Maze:
             return [[Who] + coordNear]
         else:
             return [[Who] + [None]+ [None]]
-            
+
     def destroy_maze_walls(self, Cell, Who=None):
 
         Cell.destroy(Who)
@@ -126,8 +127,8 @@ class Maze:
             elif i[0]=="O" and i[1]!=None and i[2]!=None:
                 self.maze[i[1],i[2]].destroy(E)
             elif i[0]=="E" and i[1]!=None and i[2]!=None:
-                self.maze[i[1],i[2]].destroy(O) 
-                     
+                self.maze[i[1],i[2]].destroy(O)
+
 
 if __name__=="__main__":
     #Test de fonctionnement des fonctions de base
