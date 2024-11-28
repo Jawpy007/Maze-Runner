@@ -12,6 +12,9 @@ class Noed:
         self.arriver = False
         self.debut = False
 
+    def is_arriver(self):
+        return self.arriver
+
     def getwalls(self):
         """
         retourne tous les murs qu'il possede ou pas
@@ -69,6 +72,9 @@ class Maze:
     #Code pomper sur internet juste pour faciliter la comprehension le temps d'un affichage fait de nous meme
     def __str__(self):
         """Return a (crude) string representation of the maze."""
+
+    def getmaze(self):
+        return self.maze
 
         maze_rows = ['-' * self.longeur * 2]
         for y in range(self.hauteur):
