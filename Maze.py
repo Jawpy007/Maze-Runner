@@ -12,6 +12,9 @@ class Noed:
         self.arriver = False
         self.debut = False
 
+    def is_depart(self):
+        return self.debut
+
     def is_arriver(self):
         return self.arriver
 
@@ -100,27 +103,30 @@ class Maze:
             si aucun argument donnée detruit tous les murs
             si donnée un point cardinaux en str(), detruit le murs correspondant si il existe
             """
-            if Who==None
-                destroy(self,Who = None)
+        if Who==None:
+            destroy(self,Who = None)
+            for i in self.getnear(Noed):
+                if self.maze[i[0],i[1]]
+        else:
 
 
-    def destroy(self,Who = None):
-            """
-            si aucun argument donnée detruit tous les murs
-            si donnée un point cardinaux en str(), detruit le murs correspondant si il existe
-            """
-            Nord = {"N":False}
-            Sud = {"S":False}
-            Est = {"E":False}
-            Ouest = {"O":False}
-            if Who == None:
-            self.walls.update(Nord)
-            self.walls.update(Sud)
-            self.walls.update(Est)
-            self.walls.update(Ouest)
-            else:
-                self.walls[Who] = False
-
+    def getnear(self, noed, Who=None):
+        coordN=noed.coord()
+        if Who="N":
+            coordNear=[coordN[0],coordN[1]-1]
+        elif Who="S":
+            coordNear=[coordN[0],coordN[1]+1]
+        elif Who="O":
+            coordNear=[coordN[0]-1,coordN[1]]
+        elif Who="E":
+            coordNear=[coordN[0]+1,coordN[1]]
+        elif Who=None:
+            return(getnear(self, noed, "N")+ getnear(self, noed, "S")+ getnear(self, noed, "O")+ getnear(self, noed, "E"))
+        if -1<coordNear[0]<self.longeur and -1<coordNear[1]<self.hauteur:
+            return [Who] + coordNear
+        else:
+            return None
+             
 
 if __name__=="__main__":
     #Test de fonctionnement des fonctions de base
