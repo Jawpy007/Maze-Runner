@@ -10,9 +10,7 @@ class A_Star:
     def getlaby(self):
         return self.laby
 
-    def MoovAble(self):
-        pass
-
+    #Pour avoir les coordonnée de la sortie du labyrinthe
     def Coord_Fin(self):
         for i in self.laby.getmaze():
             for j in i:
@@ -20,6 +18,7 @@ class A_Star:
                     return j.coord()
         return None
 
+    #Pour avoir les coordonnée du debut du labyrinthe
     def Coord_Depart(self):
         for i in self.getlaby().getmaze():
             for j in i:
@@ -40,9 +39,8 @@ class A_Star:
         Arriver = self.Coord_Fin()
         return (round(sqrt((Depart[0]+Arriver[0])^2+(Depart[1]+Arriver[1])^2)*sqrt(2)*10))
 
+    #fonction A* , algorithme trouvé grace a des recherche internet
     def solve(self):
-
-        chemin = []
 
         #coordonnée de debut et de fin
         Start = self.Coord_Depart()
@@ -121,9 +119,7 @@ class A_Star:
                         heappush(open_set,(f_score[neighbor],neighbor))
 
 
-            chemin.append(current)
-
-        return (chemin,"pas trouver la suite  :'(  ")
+        return ("pas trouver :'(  ")
 
 
 
@@ -132,13 +128,16 @@ class A_Star:
 if __name__=="__main__":
     Laby = Maze(3, 3)
 
-    # Detruire des murs pour creer un chemin
+    # Detruire des murs pour creer un chemin, destruction par paire
     Laby.maze[0][0].destroy("E")
     Laby.maze[1][0].destroy("O")
+
     Laby.maze[1][0].destroy("S")
     Laby.maze[1][1].destroy("N")
+
     Laby.maze[1][1].destroy("E")
     Laby.maze[2][1].destroy("O")
+
     Laby.maze[2][1].destroy("S")
     Laby.maze[2][2].destroy("N")
 

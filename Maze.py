@@ -69,6 +69,7 @@ class Maze:
         self.longeur = Longeur
         self.hauteur = hauteur
 
+    #retourne la cellule au coordonnées x , y
     def cellule(self,x,y):
         return self.maze[x][y]
 
@@ -105,22 +106,7 @@ class Maze:
             maze_rows.append(''.join(maze_row))
         return '\n'.join(maze_rows)
 
-    def is_wall(self,cellule1,cellule2):
-        Paire = {"S":"N","N":"S","E":"O","O":"E"}
-
-        #Code pour savoir quelle mur ils ont en commun :
-        Coord_cell1 = cellule1.coord()
-        Coord_cell2 = cellule2.coord()
-
-        for i in [(0,1), (1,0), (0,-1), (-1,0)]:
-            pass
-        pass
-
-
-
-
-
-
+    #Code retournant les coordonné + le cardinal des cellules voisines
     def getnear(self, noed, Who=None):
         coordN=noed.coord()
         if Who=="N":
@@ -138,15 +124,7 @@ class Maze:
         else:
             return [[Who] + [None]+ [None]]
 
-    def getnear_coord(self, noed):
-        x, y = noed.coord()
-        voisins = []
-        for dx, dy in [(0, -1), (0, 1), (-1, 0), (1, 0)]:  # N, S, O, E
-            nx, ny = x + dx, y + dy
-            if 0 <= nx < self.longeur and 0 <= ny < self.hauteur:
-                voisins.append((nx, ny))
-        return voisins
-
+    #detruits les murs d'une cellule
     def destroy_maze_walls(self, Cell, Who=None):
 
         Cell.destroy(Who)
