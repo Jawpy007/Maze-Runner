@@ -83,7 +83,7 @@ class Maze:
         return self.maze
 
 
-    #Code pomper sur internet juste pour faciliter la comprehension le temps d'un affichage fait de nous meme
+    #Code pomper sur internet juste pour faciliter la comprehension et coder, le temps d'un affichage fait de nous meme
     def __str__(self):
         """Return a (crude) string representation of the maze."""
 
@@ -105,6 +105,22 @@ class Maze:
             maze_rows.append(''.join(maze_row))
         return '\n'.join(maze_rows)
 
+    def is_wall(self,cellule1,cellule2):
+        Paire = {"S":"N","N":"S","E":"O","O":"E"}
+
+        #Code pour savoir quelle mur ils ont en commun :
+        Coord_cell1 = cellule1.coord()
+        Coord_cell2 = cellule2.coord()
+
+        for i in [(0,1), (1,0), (0,-1), (-1,0)]:
+            pass
+        pass
+
+
+
+
+
+
     def getnear(self, noed, Who=None):
         coordN=noed.coord()
         if Who=="N":
@@ -121,6 +137,15 @@ class Maze:
             return [[Who] + coordNear]
         else:
             return [[Who] + [None]+ [None]]
+
+    def getnear_coord(self, noed):
+        x, y = noed.coord()
+        voisins = []
+        for dx, dy in [(0, -1), (0, 1), (-1, 0), (1, 0)]:  # N, S, O, E
+            nx, ny = x + dx, y + dy
+            if 0 <= nx < self.longeur and 0 <= ny < self.hauteur:
+                voisins.append((nx, ny))
+        return voisins
 
     def destroy_maze_walls(self, Cell, Who=None):
 
@@ -148,6 +173,7 @@ if __name__=="__main__":
     print(Noeu.getwalls())
 
     Laby = Maze(10,10)
-    print(Laby.maze)
+    print(Laby)
 
     print(Laby.cellule(0,0))
+    print(Laby.is_wall(Laby.cellule(0,0),Laby.cellule(0,1)))

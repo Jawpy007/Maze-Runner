@@ -41,6 +41,9 @@ class A_Star:
         return (round(sqrt((Depart[0]+Arriver[0])^2+(Depart[1]+Arriver[1])^2)*sqrt(2)*10))
 
     def solve(self):
+
+        chemin = []
+
         #coordonnée de debut et de fin
         Start = self.Coord_Depart()
         Goal = self.Coord_Fin()
@@ -71,6 +74,7 @@ class A_Star:
 
         #Tant qu'il reste quelque chose a regardé
         while open_set:
+            print("passage suivant")
             #Coordonnée de la cellule courante
             current = heappop(open_set)[1] #d'apres la doc : "Extraie le plus petit élément de heap en préservant l'invariant du tas" c'est donc UTILE :)
 
@@ -91,12 +95,35 @@ class A_Star:
                 path.reverse()
                 return path
 
+            Paire = {(0,1):"S",(1,0):"O",(0,-1):"N",(-1,0):"E"}#Pour savoir ou qu'on va
 
-            for direction in [(0,1), (1,0), (0,-1), (-1,0)]:#je regarde dans toutes les direction, deso joe pour la fonction :'(
-                neighbor = (current[1] + direction[1], current[0] + direction[0])#
-                print(neighbor)
+            Current_cell = Laby.cellule(current[0],current[1])
+            Voisin_Card = Laby.getnear(Current_cell)
 
-            return "Test"
+            for direction in [(0,1), (1,0), (0,-1), (-1,0)]:#je regarde dans toutes les direction
+                Cardinal = Paire[direction]
+                print("Je regarde au",Cardinal)
+                neighbor = (current[0] + direction[0], current[1] + direction[1])#le calcule pour regarder les voisins
+                neighbor_cell = Laby.cellule(neighbor[0],neighbor[1])
+                print(0 <= neighbor[1] < Laby.maze_width() and 0 <= neighbor[0] < Laby.maze_height())
+                if 0 <= neighbor[0] < Laby.maze_width() and 0 <= neighbor[1] < Laby.maze_height():#es ce que c'est dans les limites ?
+                    print(neighbor in visite or Current_cell.getwalls()[Cardinal] == True)
+                    if neighbor in visite or Current_cell.getwalls()[Cardinal] == True:#si la cellule a deja etait evalué ou n'est pas accessible alors on ne l'evalu pas
+                        continue
+
+                    try_g_score = g_score[current] + 1
+
+                    if neighbor not in g_score or try_g_score < g_score[neighbor]:
+                        came_from[neighbor] = current #update pour savoir ou on va
+                        #update des scores
+                        g_score[neighbor] = try_g_score
+                        f_score[neighbor] = try_g_score + self.manhattan(neighbor_cell)
+                        heappush(open_set,(f_score[neighbor],neighbor))
+
+
+            chemin.append(current)
+
+        return (chemin,"pas trouver la suite  :'(  ")
 
 
 
