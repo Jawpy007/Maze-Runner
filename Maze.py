@@ -57,6 +57,7 @@ class Noed:
         else:
             self.walls[Who] = False
 
+            
     def finale(self):
         self.arriver = True
 
@@ -116,17 +117,19 @@ class Maze:
             return [[Who] + [None]+ [None]]
             
     def destroy_maze_walls(self, Cell, Who=None):
-
         Cell.destroy(Who)
-        for i in [self.getnear(Cell,Who)]:
+        Liste=self.getnear(Cell,Who)
+        for i in Liste:
             if i[0]=="N" and i[1]!=None and i[2]!=None:
-                self.maze[i[1],i[2]].destroy(S)
+                self.maze[i[1]][i[2]].destroy("S")
             elif i[0]=="S" and i[1]!=None and i[2]!=None:
-                self.maze[i[1],i[2]].destroy(N)
+                print(self.maze[i[1]][i[2]])
+                self.maze[i[1]][i[2]].destroy("N")
+                print(self.maze[i[1]][i[2]].getwalls)
             elif i[0]=="O" and i[1]!=None and i[2]!=None:
-                self.maze[i[1],i[2]].destroy(E)
+                self.maze[i[1]][i[2]].destroy("E")
             elif i[0]=="E" and i[1]!=None and i[2]!=None:
-                self.maze[i[1],i[2]].destroy(O) 
+                self.maze[i[1]][i[2]].destroy("O") 
                      
 
 if __name__=="__main__":
