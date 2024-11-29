@@ -93,7 +93,7 @@ class A_Star:
 
 
             for direction in [(0,1), (1,0), (0,-1), (-1,0)]:#je regarde dans toutes les direction, deso joe pour la fonction :'(
-                neighbor = (current[0] + direction[0], current[1] + direction[1])#
+                neighbor = (current[1] + direction[1], current[0] + direction[0])#
                 print(neighbor)
 
             return "Test"

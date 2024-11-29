@@ -72,6 +72,12 @@ class Maze:
     def cellule(self,x,y):
         return self.maze[x][y]
 
+    def maze_width(self):
+        return self.longeur
+
+    def maze_height(self):
+        return self.hauteur
+
 
     def getmaze(self):
         return self.maze
