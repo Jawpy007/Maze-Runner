@@ -57,7 +57,7 @@ class Noed:
         else:
             self.walls[Who] = False
 
-            
+
     def finale(self):
         self.arriver = True
 
