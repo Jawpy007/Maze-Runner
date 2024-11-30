@@ -27,14 +27,14 @@ class A_Star:
         return None
 
     def manhattan(self,cellule):
-        """calcule la distance a pied, case par case, et renvoie le nbr de case a parcourir"""
+        """calcule la distance a pied, case par case, et renvoie le nbr de case a parcourir en admetant qu'il n'y a pas de mur"""
         Depart = cellule.coord()
         Arriver = self.Coord_Fin()
         return(abs(Depart[0]-Arriver[0])+ abs(Depart[1]-Arriver[1]))
 
 
     def pytha(self,cellule):
-        """ calcule de la diagonal"""
+        """ calcul de la diagonal"""
         Depart = cellule.coord()
         Arriver = self.Coord_Fin()
         return (round(sqrt((Depart[0]+Arriver[0])^2+(Depart[1]+Arriver[1])^2)*sqrt(2)*10))
