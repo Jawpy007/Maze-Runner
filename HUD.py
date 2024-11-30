@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import tkinter as tk
 from Maze import Maze  # Importer votre classe Maze
 
@@ -92,3 +93,48 @@ canvas.pack()
 # Dessiner le labyrinthe
 dessiner_labyrinthe(canvas, labyrinthe)
 fenetre.mainloop()
+=======
+#Tom Programmation
+import tkinter as tk
+from Maze import Maze
+
+# Dimensions du labyrinthe
+LARGEUR = 10
+HAUTEUR = 10
+CELL_SIZE = 40  # Taille d'une cellule en pixels
+
+def draw_maze(canvas, maze):
+    """Dessine le labyrinthe sur le canvas en fonction des murs de chaque cellule."""
+    for x in range(maze.longeur):
+        for y in range(maze.hauteur):
+            cell = maze.cellule(x, y)
+            x1, y1 = x * CELL_SIZE, y * CELL_SIZE
+            x2, y2 = x1 + CELL_SIZE, y1 + CELL_SIZE
+
+            # Dessiner les murs en fonction de leur présence
+            if cell.walls["N"]:  # Mur Nord
+                canvas.create_line(x1, y1, x2, y1, fill="black", width=2)
+            if cell.walls["S"]:  # Mur Sud
+                canvas.create_line(x1, y2, x2, y2, fill="black", width=2)
+            if cell.walls["E"]:  # Mur Est
+                canvas.create_line(x2, y1, x2, y2, fill="black", width=2)
+            if cell.walls["O"]:  # Mur Ouest
+                canvas.create_line(x1, y1, x1, y2, fill="black", width=2)
+
+# Initialisation de la fenêtre tkinter
+root = tk.Tk()
+root.title("Affichage du Labyrinthe")
+
+canvas_width = LARGEUR * CELL_SIZE
+canvas_height = HAUTEUR * CELL_SIZE
+canvas = tk.Canvas(root, width=canvas_width, height=canvas_height, bg="white")
+canvas.pack()
+
+# Création et affichage du labyrinthe
+laby = Maze(LARGEUR, HAUTEUR)
+draw_maze(canvas, laby)
+
+# Lancer la boucle tkinter
+root.mainloop()
+
+>>>>>>> Stashed changes
