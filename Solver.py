@@ -72,7 +72,7 @@ class A_Star:
 
         #Tant qu'il reste quelque chose a regardé
         while open_set:
-            #print("passage suivant")
+            ##Debug_print : print("passage suivant")
             #Coordonnée de la cellule courante
             current = heappop(open_set)[1] #d'apres la doc : "Extraie le plus petit élément de heap en préservant l'invariant du tas" c'est donc UTILE :)
 
@@ -99,18 +99,26 @@ class A_Star:
             Voisin_Card = Laby.getnear(Current_cell)
 
             for direction in [(0,1), (1,0), (0,-1), (-1,0)]:#je regarde dans toutes les direction
+
+                #Grace au dico Paire je sais dans qu'elle direction je regarde
                 Cardinal = Paire[direction]
-                #print("Je regarde au",Cardinal)
+
+                ##Debug_print : print("Je regarde au",Cardinal)
                 neighbor = (current[0] + direction[0], current[1] + direction[1])#le calcule pour regarder les voisins
-                #print(0 <= neighbor[1] < Laby.maze_width() and 0 <= neighbor[0] < Laby.maze_height())
+
+                #Debug_print : print(0 <= neighbor[1] < Laby.maze_width() and 0 <= neighbor[0] < Laby.maze_height())
                 if 0 <= neighbor[0] < Laby.maze_width() and 0 <= neighbor[1] < Laby.maze_height():#es ce que c'est dans les limites ?
+                    #Recuperation de la cellule apres qu'on est verifié si elle existe bien , (j'ai pris 2h a resoudre ce bug aahhhhhhh)
                     neighbor_cell = Laby.cellule(neighbor[0],neighbor[1])
+
                     #print(neighbor in visite or Current_cell.getwalls()[Cardinal] == True)
                     if neighbor in visite or Current_cell.getwalls()[Cardinal] == True:#si la cellule a deja etait evalué ou n'est pas accessible alors on ne l'evalu pas
                         continue
 
+                    #Calcule du score presumé de la cellule
                     try_g_score = g_score[current] + 1
 
+                    #Si c'est le meilleur score alors
                     if neighbor not in g_score or try_g_score < g_score[neighbor]:
                         came_from[neighbor] = current #update pour savoir ou on va
                         #update des scores
