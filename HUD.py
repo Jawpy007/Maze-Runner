@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 import tkinter as tk
 from Maze import Maze  # Importer votre classe Maze
 
@@ -55,33 +54,32 @@ for ligne in Laby.maze:
 
 for ligne in Laby.maze:
     for cellules in ligne:
-        if cellules.is_==True:
+        if cellules.is_arriver==True:
             changer_couleur_case(case,cellules.coord[0],cellule.coord[1],"green")
 
 
 # Initialisation de la fenêtre tkinter
 fenetre = tk.Tk()
-fenetre.title("Labyrinthe avec changement de couleur")
+fenetre.title("Labyrinthe")
 
 # Charger le labyrinthe
 
 
 # Dimensions du canvas
-canvas_largeur = labyrinthe.longeur * taille_cellule
-canvas_hauteur = labyrinthe.hauteur * taille_cellule
+canvas_largeur = Laby.longeur * taille_cellule
+canvas_hauteur = Laby.hauteur * taille_cellule
 
 # Création du canvas
 canvas = tk.Canvas(fenetre, width=canvas_largeur, height=canvas_hauteur, bg="white")
 canvas.pack()
 
 # Dessiner le labyrinthe
-dessiner_labyrinthe(canvas, labyrinthe)
+dessiner_labyrinthe(canvas, Laby)
 
 # Lancer l'interface graphique
 fenetre.mainloop()
 
 
-labyrinthe = Maze(10, 10)  # Labyrinthe de 10x10
 
 
 canvas_largeur = labyrinthe.longeur * taille_cellule
@@ -94,48 +92,3 @@ canvas.pack()
 # Dessiner le labyrinthe
 dessiner_labyrinthe(canvas, labyrinthe)
 fenetre.mainloop()
-=======
-#Tom Programmation
-import tkinter as tk
-from Maze import Maze
-
-# Dimensions du labyrinthe
-LARGEUR = 10
-HAUTEUR = 10
-CELL_SIZE = 40  # Taille d'une cellule en pixels
-
-def draw_maze(canvas, maze):
-    """Dessine le labyrinthe sur le canvas en fonction des murs de chaque cellule."""
-    for x in range(maze.longeur):
-        for y in range(maze.hauteur):
-            cell = maze.cellule(x, y)
-            x1, y1 = x * CELL_SIZE, y * CELL_SIZE
-            x2, y2 = x1 + CELL_SIZE, y1 + CELL_SIZE
-
-            # Dessiner les murs en fonction de leur présence
-            if cell.walls["N"]:  # Mur Nord
-                canvas.create_line(x1, y1, x2, y1, fill="black", width=2)
-            if cell.walls["S"]:  # Mur Sud
-                canvas.create_line(x1, y2, x2, y2, fill="black", width=2)
-            if cell.walls["E"]:  # Mur Est
-                canvas.create_line(x2, y1, x2, y2, fill="black", width=2)
-            if cell.walls["O"]:  # Mur Ouest
-                canvas.create_line(x1, y1, x1, y2, fill="black", width=2)
-
-# Initialisation de la fenêtre tkinter
-root = tk.Tk()
-root.title("Affichage du Labyrinthe")
-
-canvas_width = LARGEUR * CELL_SIZE
-canvas_height = HAUTEUR * CELL_SIZE
-canvas = tk.Canvas(root, width=canvas_width, height=canvas_height, bg="white")
-canvas.pack()
-
-# Création et affichage du labyrinthe
-laby = Maze(LARGEUR, HAUTEUR)
-draw_maze(canvas, laby)
-
-# Lancer la boucle tkinter
-root.mainloop()
-
->>>>>>> Stashed changes
