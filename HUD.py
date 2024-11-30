@@ -54,33 +54,32 @@ for ligne in Laby.maze:
 
 for ligne in Laby.maze:
     for cellules in ligne:
-        if cellules.is_==True:
+        if cellules.is_arriver==True:
             changer_couleur_case(case,cellules.coord[0],cellule.coord[1],"green")
 
 
 # Initialisation de la fenêtre tkinter
 fenetre = tk.Tk()
-fenetre.title("Labyrinthe avec changement de couleur")
+fenetre.title("Labyrinthe")
 
 # Charger le labyrinthe
 
 
 # Dimensions du canvas
-canvas_largeur = labyrinthe.longeur * taille_cellule
-canvas_hauteur = labyrinthe.hauteur * taille_cellule
+canvas_largeur = Laby.longeur * taille_cellule
+canvas_hauteur = Laby.hauteur * taille_cellule
 
 # Création du canvas
 canvas = tk.Canvas(fenetre, width=canvas_largeur, height=canvas_hauteur, bg="white")
 canvas.pack()
 
 # Dessiner le labyrinthe
-dessiner_labyrinthe(canvas, labyrinthe)
+dessiner_labyrinthe(canvas, Laby)
 
 # Lancer l'interface graphique
 fenetre.mainloop()
 
 
-labyrinthe = Maze(10, 10)  # Labyrinthe de 10x10
 
 
 canvas_largeur = labyrinthe.longeur * taille_cellule
