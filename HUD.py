@@ -26,11 +26,6 @@ if __name__=="__main__":
     solution= solver.solve()
     print(solution)
 
-
-
-
-
-
 for ligne in Laby.getmaze():
     for cellules in ligne:
         if cellules.is_depart==True:
@@ -78,15 +73,6 @@ def changer_couleur_case(canvas, ligne, colonne, couleur):
     # Redessiner la case avec la nouvelle couleur
     canvas.create_rectangle(x1, y1, x2, y2, fill=couleur, outline=couleur)
 
-
-
-
-
-
-
-
-
-
 # Initialisation de la fenêtre tkinter
 
 fenetre = tk.Tk()
@@ -103,8 +89,6 @@ canvas.pack()
 # Dessiner le labyrinthe
 dessiner_labyrinthe(canvas, Laby)
 
-
-
 for ligne in Laby.getmaze():                                     #coloriage de la cellule départ
 
     for cellules in ligne:
@@ -115,10 +99,6 @@ for ligne in Laby.getmaze():                                     #coloriage de l
             print('t')
             changer_couleur_case(canvas,cellules.coord()[0],cellules.coord()[1],"red")
 
-
-
-
-
 def trajet(index=1):                #colorie chaque le chemin
     bouton.config(state="disabled")  # Désactive le bouton
     global solution
@@ -128,9 +108,6 @@ def trajet(index=1):                #colorie chaque le chemin
 
 bouton = tk.Button(fenetre, text="Voir le chemin", command=trajet)
 bouton.pack(pady=20)
-
-
-
 
 # Lancer l'interface graphique
 fenetre.mainloop()
