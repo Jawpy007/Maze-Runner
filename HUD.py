@@ -27,13 +27,6 @@ if __name__=="__main__":
     print(solution)
 
 
-
-for ligne in Laby.getmaze():
-    for cellules in ligne:
-        if cellules.is_depart==True:
-            print(cellules)
-
-
 # Paramètres
 
 taille_cellule = 40  # Taille d'une cellule (en pixels)

@@ -1,6 +1,7 @@
 #Joe Programmation
 from Maze import *
 from random import *
+from Solver import *
 
 def mazemaker(lab, Longeur, hauteur, seed=None):
     Ouvertureenhaut="e"
@@ -77,3 +78,4 @@ def listeValeurtrie(listeValue):
             nbcell=dernierindex-premierindex+1
             listeensemble+=[[premierindex,dernierindex, listeValue[premierindex],nbcell]]
     return(listeensemble)
+
