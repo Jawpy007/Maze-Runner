@@ -154,4 +154,3 @@ if __name__=="__main__":
     print(Laby)
 
     print(Laby.cellule(0,0))
-    print(Laby.is_wall(Laby.cellule(0,0),Laby.cellule(0,1)))
