@@ -1,5 +1,5 @@
 import tkinter as tk
-from Maze import Maze  # Importer votre classe Maze
+from Maze import Maze
 from Solver import*
 import time
 
@@ -25,6 +25,8 @@ if __name__=="__main__":
     solver=A_Star(Laby)
     solution= solver.solve()
     print(solution)
+
+
 
 for ligne in Laby.getmaze():
     for cellules in ligne:
