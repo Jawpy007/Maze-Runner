@@ -79,7 +79,6 @@ class Maze:
     def maze_height(self):
         return self.hauteur
 
-
     def getmaze(self):
         return self.maze
 
@@ -126,17 +125,21 @@ class Maze:
 
     #detruits les murs d'une cellule
     def destroy_maze_walls(self, Cell, Who=None):
+        Cell.destroy(Who)  # Détruit le mur dans la direction donnée pour la cellule actuelle
 
-        Cell.destroy(Who)
-        for i in [self.getnear(Cell,Who)]:
-            if i[0]=="N" and i[1]!=None and i[2]!=None:
-                self.maze[i[1],i[2]].destroy(S)
-            elif i[0]=="S" and i[1]!=None and i[2]!=None:
-                self.maze[i[1],i[2]].destroy(N)
-            elif i[0]=="O" and i[1]!=None and i[2]!=None:
-                self.maze[i[1],i[2]].destroy(E)
-            elif i[0]=="E" and i[1]!=None and i[2]!=None:
-                self.maze[i[1],i[2]].destroy(O)
+        voisins = self.getnear(Cell, Who)  # Récupère les voisins
+        for voisin in voisins:  # Itère sur la liste des voisins
+            direction, x, y = voisin
+            if x is not None and y is not None:  # Vérifie que les coordonnées sont valides
+                if direction == "N":
+                    self.maze[x][y].destroy("S")  # Détruit le mur Sud du voisin Nord
+                elif direction == "S":
+                    self.maze[x][y].destroy("N")  # Détruit le mur Nord du voisin Sud
+                elif direction == "O":
+                    self.maze[x][y].destroy("E")  # Détruit le mur Est du voisin Ouest
+                elif direction == "E":
+                    self.maze[x][y].destroy("O")  # Détruit le mur Ouest du voisin Est
+
 
 
 if __name__=="__main__":
