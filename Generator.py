@@ -79,3 +79,5 @@ def listeValeurtrie(listeValue):
             listeensemble+=[[premierindex,dernierindex, listeValue[premierindex],nbcell]]
     return(listeensemble)
 
+
+
