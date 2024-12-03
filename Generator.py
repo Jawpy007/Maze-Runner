@@ -81,7 +81,7 @@ def dicValIndex(listevaleur):
     return(dic_valeur, listelen)
 
 if __name__=="__main__":
-    Laby = Maze(10, 10)
+    Laby = Maze(25, 30)
 
     MM(Laby)
 

@@ -5,7 +5,7 @@ import time
 from Generator import *
 
 if __name__=="__main__":
-    Laby = Maze(10, 10)
+    Laby = Maze(30, 30)
 
     MM(Laby)
 
