@@ -106,6 +106,8 @@ class Maze:
         return '\n'.join(maze_rows)
 
     #Code retournant les coordonné + le cardinal des cellules voisines
+
+
     def getnear(self, noed, Who=None):
         coordN=noed.coord()
         if Who=="N":
@@ -123,23 +125,40 @@ class Maze:
         else:
             return [[Who] + [None]+ [None]]
 
+    def getnearjoe(self, noed, Who=None):
+        coordN=noed.coord()
+        if Who=="O":
+            coordNear=[coordN[0],coordN[1]-1]
+        elif Who=="E":
+            coordNear=[coordN[0],coordN[1]+1]
+        elif Who=="N":
+            coordNear=[coordN[0]-1,coordN[1]]
+        elif Who=="S":
+            coordNear=[coordN[0]+1,coordN[1]]
+        elif Who==None:
+            return(self.getnearjoe(noed, "N")+ self.getnearjoe(noed, "S")+ self.getnearjoe(noed, "O")+ self.getnearjoe(noed, "E"))
+        if -1<coordNear[0]<self.longeur and -1<coordNear[1]<self.hauteur:
+            return [[Who] + coordNear]
+        else:
+            return [[Who] + [None]+ [None]]
+
+
     #detruits les murs d'une cellule
     def destroy_maze_walls(self, Cell, Who=None):
         Cell.destroy(Who)  # Détruit le mur dans la direction donnée pour la cellule actuelle
 
-        voisins = self.getnear(Cell, Who)  # Récupère les voisins
+        voisins = self.getnearjoe(Cell, Who)  # Récupère les voisins
         for voisin in voisins:  # Itère sur la liste des voisins
             direction, x, y = voisin
             if x is not None and y is not None:  # Vérifie que les coordonnées sont valides
                 if direction == "N":
-                    self.maze[x][y].destroy("S")  # Détruit le mur Sud du voisin Nord
+                    self.maze[y][x].destroy("S")  # Détruit le mur Sud du voisin Nord
                 elif direction == "S":
-                    self.maze[x][y].destroy("N")  # Détruit le mur Nord du voisin Sud
+                    self.maze[y][x].destroy("N")  # Détruit le mur Nord du voisin Sud
                 elif direction == "O":
-                    self.maze[x][y].destroy("E")  # Détruit le mur Est du voisin Ouest
+                    self.maze[y][x].destroy("E")  # Détruit le mur Est du voisin Ouest
                 elif direction == "E":
-                    self.maze[x][y].destroy("O")  # Détruit le mur Ouest du voisin Est
-
+                    self.maze[y][x].destroy("O")  # Détruit le mur Ouest du voisin Est
 
 
 if __name__=="__main__":

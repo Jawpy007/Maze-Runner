@@ -15,7 +15,7 @@ class A_Star:
         for i in self.laby.getmaze():
             for j in i:
                 if j.is_arriver() == True:
-                    return j.coord()
+                    return (j.coord()[1],j.coord()[0])
         return None
 
     #Pour avoir les coordonnée du debut du labyrinthe

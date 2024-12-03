@@ -5,66 +5,10 @@ import time
 from Generator import *
 
 if __name__=="__main__":
-    Laby = Maze(15, 15)
+    Laby = Maze(10, 10)
 
-    # Détruire des murs pour créer un chemin (exemple aléatoire)
-    Laby.maze[0][0].destroy("E")
-    Laby.maze[1][0].destroy("O")
+    MM(Laby)
 
-    Laby.maze[1][0].destroy("S")
-    Laby.maze[1][1].destroy("N")
-
-    Laby.maze[1][1].destroy("E")
-    Laby.maze[2][1].destroy("O")
-
-    Laby.maze[2][1].destroy("S")
-    Laby.maze[2][2].destroy("N")
-
-    Laby.maze[2][2].destroy("E")
-    Laby.maze[3][2].destroy("O")
-
-    Laby.maze[3][2].destroy("S")
-    Laby.maze[3][3].destroy("N")
-
-    Laby.maze[3][3].destroy("E")
-    Laby.maze[4][3].destroy("O")
-
-    Laby.maze[4][3].destroy("S")
-    Laby.maze[4][4].destroy("N")
-
-    Laby.maze[4][4].destroy("E")
-    Laby.maze[5][4].destroy("O")
-
-    Laby.maze[5][4].destroy("S")
-    Laby.maze[5][5].destroy("N")
-
-    Laby.maze[5][5].destroy("E")
-    Laby.maze[6][5].destroy("O")
-
-    Laby.maze[6][5].destroy("S")
-    Laby.maze[6][6].destroy("N")
-
-    Laby.maze[6][6].destroy("E")
-    Laby.maze[7][6].destroy("O")
-
-    Laby.maze[7][6].destroy("S")
-    Laby.maze[7][7].destroy("N")
-
-    Laby.maze[7][7].destroy("E")
-    Laby.maze[8][7].destroy("O")
-
-    Laby.maze[8][7].destroy("S")
-    Laby.maze[8][8].destroy("N")
-
-    Laby.maze[8][8].destroy("E")
-    Laby.maze[9][8].destroy("O")
-
-    Laby.maze[9][8].destroy("S")
-    Laby.maze[9][9].destroy("N")
-
-    # Ajouter départ et arrivée
-    Laby.maze[0][0].depart()
-    Laby.maze[9][9].finale()
     solver=A_Star(Laby)
     solution= solver.solve()
     print(solution)
