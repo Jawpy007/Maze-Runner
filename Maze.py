@@ -57,7 +57,6 @@ class Noed:
         else:
             self.walls[Who] = False
 
-
     def finale(self):
         self.arriver = True
 
@@ -69,15 +68,22 @@ class Maze:
         self.maze = [ [Noed(i,j) for i in range(Longeur)] for j in range(hauteur)]
         self.longeur = Longeur
         self.hauteur = hauteur
+
+    #retourne la cellule au coordonnées x , y
     def cellule(self,x,y):
         return self.maze[x][y]
 
+    def maze_width(self):
+        return self.longeur
+
+    def maze_height(self):
+        return self.hauteur
 
     def getmaze(self):
         return self.maze
 
 
-    #Code pomper sur internet juste pour faciliter la comprehension le temps d'un affichage fait de nous meme
+    #Code pomper sur internet juste pour faciliter la comprehension et coder, le temps d'un affichage fait de nous meme
     def __str__(self):
         """Return a (crude) string representation of the maze."""
 
@@ -99,6 +105,7 @@ class Maze:
             maze_rows.append(''.join(maze_row))
         return '\n'.join(maze_rows)
 
+    #Code retournant les coordonné + le cardinal des cellules voisines
     def getnear(self, noed, Who=None):
         coordN=noed.coord()
         if Who=="N":
@@ -115,22 +122,25 @@ class Maze:
             return [[Who] + coordNear]
         else:
             return [[Who] + [None]+ [None]]
-            
+
+    #detruits les murs d'une cellule
     def destroy_maze_walls(self, Cell, Who=None):
-        Cell.destroy(Who)
-        Liste=self.getnear(Cell,Who)
-        for i in Liste:
-            if i[0]=="N" and i[1]!=None and i[2]!=None:
-                self.maze[i[1]][i[2]].destroy("S")
-            elif i[0]=="S" and i[1]!=None and i[2]!=None:
-                print(self.maze[i[1]][i[2]])
-                self.maze[i[1]][i[2]].destroy("N")
-                print(self.maze[i[1]][i[2]].getwalls)
-            elif i[0]=="O" and i[1]!=None and i[2]!=None:
-                self.maze[i[1]][i[2]].destroy("E")
-            elif i[0]=="E" and i[1]!=None and i[2]!=None:
-                self.maze[i[1]][i[2]].destroy("O") 
-                     
+        Cell.destroy(Who)  # Détruit le mur dans la direction donnée pour la cellule actuelle
+
+        voisins = self.getnear(Cell, Who)  # Récupère les voisins
+        for voisin in voisins:  # Itère sur la liste des voisins
+            direction, x, y = voisin
+            if x is not None and y is not None:  # Vérifie que les coordonnées sont valides
+                if direction == "N":
+                    self.maze[x][y].destroy("S")  # Détruit le mur Sud du voisin Nord
+                elif direction == "S":
+                    self.maze[x][y].destroy("N")  # Détruit le mur Nord du voisin Sud
+                elif direction == "O":
+                    self.maze[x][y].destroy("E")  # Détruit le mur Est du voisin Ouest
+                elif direction == "E":
+                    self.maze[x][y].destroy("O")  # Détruit le mur Ouest du voisin Est
+
+
 
 if __name__=="__main__":
     #Test de fonctionnement des fonctions de base
@@ -144,6 +154,6 @@ if __name__=="__main__":
     print(Noeu.getwalls())
 
     Laby = Maze(10,10)
-    print(Laby.maze)
+    print(Laby)
 
     print(Laby.cellule(0,0))
