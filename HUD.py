@@ -5,7 +5,7 @@ import time
 from Generator import *
 
 if __name__=="__main__":
-    Laby = Maze(30, 30)
+    Laby = Maze(15)
 
     MM(Laby)
 
@@ -96,4 +96,3 @@ bouton.pack(pady=20)
 
 # Lancer l'interface graphique
 fenetre.mainloop()
-

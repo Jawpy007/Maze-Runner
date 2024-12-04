@@ -64,10 +64,10 @@ class Noed:
         self.debut = True
 
 class Maze:
-    def __init__(self,Longeur,hauteur):
-        self.maze = [ [Noed(i,j) for i in range(Longeur)] for j in range(hauteur)]
-        self.longeur = Longeur
-        self.hauteur = hauteur
+    def __init__(self,proportion):
+        self.maze = [ [Noed(i,j) for i in range(proportion)] for j in range(proportion)]
+        self.longeur = proportion
+        self.hauteur = proportion
 
     #retourne la cellule au coordonnées x , y
     def cellule(self,x,y):
