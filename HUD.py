@@ -113,18 +113,6 @@ def menu():
     canvas = tk.Canvas(fenetre, width=canvas_largeur, height=canvas_hauteur, bg="white")
     canvas.pack(fill="both")
 
-    """# Dessin du labyrinthe sur le canvas
-    dessiner_labyrinthe(canvas, Laby)
-
-    # Mise en évidence des cases de départ et d'arrivée
-    for ligne in Laby.getmaze():
-        for cellules in ligne:
-            if cellules.is_depart():  # Si c'est la cellule de départ
-                changer_couleur_case(canvas, cellules.coord()[0], cellules.coord()[1], "green")
-            if cellules.is_arriver():  # Si c'est la cellule d'arrivée
-                changer_couleur_case(canvas, cellules.coord()[0], cellules.coord()[1], "red")"""
-
-
     entry_taille = tk.Entry (fenetre) 
     entry_taille.pack(pady=20)
     entry_seed = tk.Entry (fenetre) 
