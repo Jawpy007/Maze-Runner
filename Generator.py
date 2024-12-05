@@ -3,6 +3,7 @@ from Maze import *  # Importation des classes nécessaires pour gérer le labyri
 from random import *  # Importation des fonctions pour la génération aléatoire
 from Solver import *  # Importation du module de résolution de labyrinthes
 
+
 def MM(maze, seed_maze=None):
     """
     Générateur de labyrinthe basé sur une version de l'algorithme d'Eller.
