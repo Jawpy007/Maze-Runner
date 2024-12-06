@@ -71,7 +71,7 @@ def trajet(canvas,fenetre,solution,index=1):
         fenetre.after(100, trajet , canvas,fenetre,solution, index + 1)
 def Labyrinthe_affichage(taille, seed, bouton, Fenetre_menu):
     if taille!="":
-        if int(taille)<18 : # taille max pour avoir un affichage correct
+        if int(taille)<26 : # taille max pour avoir un affichage correct
             Laby = Maze(int(taille))  
 
             MM(Laby, seed)
@@ -111,8 +111,8 @@ def Labyrinthe_affichage(taille, seed, bouton, Fenetre_menu):
         bouton.config(state="disabled")
         bouton_shake(bouton, Fenetre_menu)
 
-def bouton_shake(bouton, Fenetre_menu, value=10, boucle=0):
-    if boucle < 11:
+def bouton_shake(bouton, Fenetre_menu, value=3, boucle=0):
+    if boucle < 4:
         # Obtenir la position actuelle du bouton
         x = bouton.winfo_x()
         y = bouton.winfo_y()
