@@ -69,58 +69,87 @@ def trajet(canvas,fenetre,solution,index=1):
         changer_couleur_case(canvas, solution[index][1], solution[index][0], "green")
         # Planifie l'affichage de la prochaine cellule après 100 ms
         fenetre.after(100, trajet , canvas,fenetre,solution, index + 1)
-def Labyrinthe_affichage(taille, seed):
-    Laby = Maze(int(taille))  
+def Labyrinthe_affichage(taille, seed, bouton, Fenetre_menu):
+    if taille!="":
+        if int(taille)<18 : # taille max pour avoir un affichage correct
+            Laby = Maze(int(taille))  
 
-    MM(Laby, seed)
+            MM(Laby, seed)
 
-    fenetre = tk.Tk()
-    fenetre.title(seed)
+            fenetre = tk.Tk()
+            fenetre.title(seed)
 
-    canvas_largeur = Laby.longeur * taille_cellule
-    canvas_hauteur = Laby.hauteur * taille_cellule
-
-
-    canvas = tk.Canvas(fenetre, width=canvas_largeur, height=canvas_hauteur, bg="white")
-    canvas.pack()
+            canvas_largeur = Laby.longeur * taille_cellule
+            canvas_hauteur = Laby.hauteur * taille_cellule
 
 
-    dessiner_labyrinthe(canvas, Laby)
+            canvas = tk.Canvas(fenetre, width=canvas_largeur, height=canvas_hauteur, bg="white")
+            canvas.pack()
 
-    for ligne in Laby.getmaze():
-        for cellules in ligne:
-            if cellules.is_depart():  
-                changer_couleur_case(canvas, cellules.coord()[0], cellules.coord()[1], "green")
-            if cellules.is_arriver():  
-                changer_couleur_case(canvas, cellules.coord()[0], cellules.coord()[1], "red")
 
-    solver = A_Star(Laby)
-    solution = solver.solve()  
-    print(solution)  
+            dessiner_labyrinthe(canvas, Laby)
 
-    bouton = tk.Button(fenetre, text="Voir le chemin", command=lambda:(trajet(canvas,fenetre,solution), bouton.config(state="disabled"))) # lance trajet et Désactive le bouton pour éviter des clics multiples
-    bouton.pack(pady=20)
+            for ligne in Laby.getmaze():
+                for cellules in ligne:
+                    if cellules.is_depart():  
+                        changer_couleur_case(canvas, cellules.coord()[0], cellules.coord()[1], "green")
+                    if cellules.is_arriver():  
+                        changer_couleur_case(canvas, cellules.coord()[0], cellules.coord()[1], "red")
 
-    fenetre.mainloop()
+            solver = A_Star(Laby)
+            solution = solver.solve()  
+            print(solution)  
+
+            bouton = tk.Button(fenetre, text="Voir le chemin", command=lambda:(trajet(canvas,fenetre,solution), bouton.config(state="disabled"))) # lance trajet et Désactive le bouton pour éviter des clics multiples
+            bouton.pack(pady=20)
+
+            fenetre.mainloop()
+        else:
+            bouton.config(state="disabled")
+            bouton_shake(bouton, Fenetre_menu)
+    else:
+        bouton.config(state="disabled")
+        bouton_shake(bouton, Fenetre_menu)
+
+def bouton_shake(bouton, Fenetre_menu, value=10, boucle=0):
+    if boucle < 11:
+        # Obtenir la position actuelle du bouton
+        x = bouton.winfo_x()
+        y = bouton.winfo_y()
+
+        # Calculer la nouvelle position en oscillant
+        bouton.place(x=value-5 ,y=0)  # Appliquer le décalage
+
+        # Revenir à la position initiale après un court délai
+        Fenetre_menu.after(100, bouton_shake, bouton, Fenetre_menu, -value, boucle + 1)
+    else:
+        bouton.place(x=0 ,y=0) 
+        bouton.config(state="active")
+
+
 def menu():
-
     fenetre = tk.Tk()
-    fenetre.title("menu")
+    fenetre.title("Menu")
+    fenetre.geometry("500x500")  # Taille de la fenêtre
 
-    canvas_largeur = 500
-    canvas_hauteur = 500
+    canvas = tk.Canvas(fenetre, width=500, height=500, bg="white")
+    canvas.pack(fill="both", expand=True)  # Occupe toute la fenêtre
 
-    canvas = tk.Canvas(fenetre, width=canvas_largeur, height=canvas_hauteur, bg="white")
-    canvas.pack(fill="both")
+    # Ajout des champs de saisie et du bouton avec positionnement précis
+    entry_taille = tk.Entry(fenetre)
+    entry_taille.place(relx=0.5, rely=0.3, anchor="center")  # Centré dans la fenêtre
+    entry_seed = tk.Entry(fenetre)
+    entry_seed.place(relx=0.5, rely=0.4, anchor="center")  # Juste en dessous du premier
 
-    entry_taille = tk.Entry (fenetre) 
-    entry_taille.pack(pady=20)
-    entry_seed = tk.Entry (fenetre) 
-    entry_seed.pack(pady=20)
-    bouton = tk.Button(fenetre, text="Go", command=lambda: Labyrinthe_affichage(entry_taille.get(), entry_seed.get()))
-    bouton.pack(pady=20)
+    bouton = tk.Button(
+        fenetre,
+        text="Go",
+        command=lambda: Labyrinthe_affichage(entry_taille.get(), entry_seed.get(), bouton, fenetre),
+    )
+    bouton.place(relx=0.5, rely=0.5, anchor="center")  # Centré sous les champs
 
     fenetre.mainloop()
+
 
 if __name__ == "__main__":
     menu()

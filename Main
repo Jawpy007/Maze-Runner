@@ -6,3 +6,4 @@ import time  # Module pour la gestion du temps (non utilisé ici)
 from Generator import *  # Importation des algorithmes de génération de labyrinthes
 from HUD import *  # Importation des algorithmes de génération de labyrinthes
 menu()
+#dsfs
