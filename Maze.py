@@ -26,7 +26,7 @@ class Noed:
 
     def allwalls(self):
         """
-        retourne tous les murs qu'il possede uniquement
+        retourne True si il possede tous ses murs , sinons retourne False
         """
         for Bool in self.walls.values():
             if Bool == False:
