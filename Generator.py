@@ -1,4 +1,4 @@
-# Joe Programming
+# Joe programmation
 from Maze import *  # Importation des classes nécessaires pour gérer le labyrinthe
 from random import *  # Importation des fonctions pour la génération aléatoire
 from Solver import *  # Importation du module de résolution de labyrinthes

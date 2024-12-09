@@ -1,4 +1,4 @@
-#Jaouen programmation
+#Jaouen et Joe programmation
 class Noed:
     """
     Creation de la classe Noed:
