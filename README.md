@@ -3,7 +3,7 @@
 
 ### Répartition des Tâches
 
-**Jaouenne**  
+**Jaouen**  
 - Développement des classes **Maze**, **Noed**, et **Solver**.
 
 **Tom**  
@@ -14,7 +14,7 @@
 
 ---
 
-### **1. Jaouenne - Classe Maze, Noed, et Solver**
+### **1. Jaouen - Classe Maze, Noed, et Solver**
 
 #### **Classe Noed**
 La classe **Noed** représente une cellule ou un nœud du labyrinthe. Chaque nœud contient des informations sur ses voisins, ses murs et son statut (départ ou arrivée).
