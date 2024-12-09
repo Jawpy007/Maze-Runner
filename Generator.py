@@ -1,7 +1,6 @@
 # Joe programmation
 from Maze import *  # Importation des classes nécessaires pour gérer le labyrinthe
 from random import *  # Importation des fonctions pour la génération aléatoire
-from Solver import *  # Importation du module de résolution de labyrinthes
 
 
 def MM(maze, seed_maze=None):
@@ -116,9 +115,5 @@ def create_value_dict(value_list):
 
 if __name__ == "__main__":
     maze = Maze(25)  # Crée un labyrinthe de taille 25x25
-
     MM(maze)  # Génère le labyrinthe
-
-    solver = A_Star(maze)  # Initialise un solveur pour le labyrinthe
-    solution = solver.solve()  # Résout le labyrinthe
-    print(solution)  # Affiche la solution
+    print(maze)
