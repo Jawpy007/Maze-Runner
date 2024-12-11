@@ -1,14 +1,14 @@
-#Jaouen et Joe programmation
+# Jaouen et Joe programmation
 class Noed:
     """
-    Creation de la classe Noed:
-        x,y = coordonnée x,y
-        walls = une liste des mures qu'il possede
-        arriver = Defini si c'est l'arriver
+    Classe représentant une cellule du labyrinthe:
+        x, y = coordonnées de la cellule
+        walls = murs de la cellule (dictionnaire de directions)
+        arriver = indique si c'est la cellule d'arrivée
     """
-    def __init__(self,x,y):
-        self.x , self.y = x,y
-        self.walls = {"N":True,"S":True,"E":True,"O":True}
+    def __init__(self, x, y):
+        self.x, self.y = x, y
+        self.walls = {"N": True, "S": True, "E": True, "O": True}
         self.arriver = False
         self.debut = False
 
@@ -19,41 +19,25 @@ class Noed:
         return self.arriver
 
     def getwalls(self):
-        """
-        retourne tous les murs qu'il possede ou pas
-        """
+        # Retourne les murs de la cellule
         return self.walls
 
     def allwalls(self):
-        """
-        retourne True si il possede tous ses murs , sinons retourne False
-        """
-        for Bool in self.walls.values():
-            if Bool == False:
-                return False
-
-        return True
+        # Vérifie si tous les murs sont intacts
+        return all(self.walls.values())
 
     def coord(self):
-        """
-        retourne les coordonnée d'une cellule
-        """
-        return (self.x,self.y)
+        # Retourne les coordonnées de la cellule
+        return (self.x, self.y)
 
-    def destroy(self,Who = None):
+    def destroy(self, Who=None):
         """
-        si aucun argument donnée detruit tous les murs
-        si donnée un point cardinaux en str(), detruit le murs correspondant si il existe
+        Détruit un ou plusieurs murs de la cellule:
+        - Si Who est None, détruit tous les murs
+        - Sinon, détruit le mur correspondant à la direction donnée
         """
-        Nord = {"N":False}
-        Sud = {"S":False}
-        Est = {"E":False}
-        Ouest = {"O":False}
-        if Who == None:
-           self.walls.update(Nord)
-           self.walls.update(Sud)
-           self.walls.update(Est)
-           self.walls.update(Ouest)
+        if Who is None:
+            self.walls = {key: False for key in self.walls}
         else:
             self.walls[Who] = False
 
@@ -63,14 +47,16 @@ class Noed:
     def depart(self):
         self.debut = True
 
+
 class Maze:
-    def __init__(self,proportion):
-        self.maze = [ [Noed(i,j) for i in range(proportion)] for j in range(proportion)]
+    def __init__(self, proportion):
+        # Génère une grille proportion x proportion de cellules
+        self.maze = [[Noed(i, j) for i in range(proportion)] for j in range(proportion)]
         self.longeur = proportion
         self.hauteur = proportion
 
-    #retourne la cellule au coordonnées x , y
-    def cellule(self,x,y):
+    def cellule(self, x, y):
+        # Retourne la cellule aux coordonnées x, y
         return self.maze[x][y]
 
     def maze_width(self):
@@ -82,97 +68,98 @@ class Maze:
     def getmaze(self):
         return self.maze
 
-
-    #Code pomper sur internet juste pour faciliter la comprehension et coder, le temps d'un affichage fait de nous meme
     def __str__(self):
-        """Return a (crude) string representation of the maze."""
-
+        """ Représentation textuelle simple du labyrinthe """
         maze_rows = ['-' * self.longeur * 2]
         for y in range(self.hauteur):
             maze_row = ['|']
             for x in range(self.hauteur):
-                if self.maze[x][y].walls['E']:
-                    maze_row.append(' |')
-                else:
-                    maze_row.append('  ')
+                maze_row.append(' |' if self.maze[x][y].walls['E'] else '  ')
             maze_rows.append(''.join(maze_row))
             maze_row = ['|']
             for x in range(self.longeur):
-                if self.maze[x][y].walls['S']:
-                    maze_row.append('-+')
-                else:
-                    maze_row.append(' +')
+                maze_row.append('-+' if self.maze[x][y].walls['S'] else ' +')
             maze_rows.append(''.join(maze_row))
         return '\n'.join(maze_rows)
 
-    #Code retournant les coordonné + le cardinal des cellules voisines
-
-
     def getnear(self, noed, Who=None):
-        coordN=noed.coord()
-        if Who=="N":
-            coordNear=[coordN[0],coordN[1]-1]
-        elif Who=="S":
-            coordNear=[coordN[0],coordN[1]+1]
-        elif Who=="O":
-            coordNear=[coordN[0]-1,coordN[1]]
-        elif Who=="E":
-            coordNear=[coordN[0]+1,coordN[1]]
-        elif Who==None:
-            return(self.getnear(noed, "N")+ self.getnear(noed, "S")+ self.getnear(noed, "O")+ self.getnear(noed, "E"))
-        if -1<coordNear[0]<self.longeur and -1<coordNear[1]<self.hauteur:
+        """
+        Retourne les coordonnées des voisins dans une direction donnée.
+        - Who: direction ('N', 'S', 'E', 'O') ou None pour toutes.
+        """
+        coordN = noed.coord()
+        if Who == "N":
+            coordNear = [coordN[0], coordN[1] - 1]
+        elif Who == "S":
+            coordNear = [coordN[0], coordN[1] + 1]
+        elif Who == "O":
+            coordNear = [coordN[0] - 1, coordN[1]]
+        elif Who == "E":
+            coordNear = [coordN[0] + 1, coordN[1]]
+        elif Who is None:
+            return (self.getnear(noed, "N") +
+                    self.getnear(noed, "S") +
+                    self.getnear(noed, "O") +
+                    self.getnear(noed, "E"))
+        if -1 < coordNear[0] < self.longeur and -1 < coordNear[1] < self.hauteur:
             return [[Who] + coordNear]
         else:
-            return [[Who] + [None]+ [None]]
+            return [[Who] + [None, None]]
 
     def getnearjoe(self, noed, Who=None):
-        coordN=noed.coord()
-        if Who=="O":
-            coordNear=[coordN[0],coordN[1]-1]
-        elif Who=="E":
-            coordNear=[coordN[0],coordN[1]+1]
-        elif Who=="N":
-            coordNear=[coordN[0]-1,coordN[1]]
-        elif Who=="S":
-            coordNear=[coordN[0]+1,coordN[1]]
-        elif Who==None:
-            return(self.getnearjoe(noed, "N")+ self.getnearjoe(noed, "S")+ self.getnearjoe(noed, "O")+ self.getnearjoe(noed, "E"))
-        if -1<coordNear[0]<self.longeur and -1<coordNear[1]<self.hauteur:
+        """
+        Variante de getnear avec un ordre de directions différent.
+        """
+        coordN = noed.coord()
+        if Who == "O":
+            coordNear = [coordN[0], coordN[1] - 1]
+        elif Who == "E":
+            coordNear = [coordN[0], coordN[1] + 1]
+        elif Who == "N":
+            coordNear = [coordN[0] - 1, coordN[1]]
+        elif Who == "S":
+            coordNear = [coordN[0] + 1, coordN[1]]
+        elif Who is None:
+            return (self.getnearjoe(noed, "N") +
+                    self.getnearjoe(noed, "S") +
+                    self.getnearjoe(noed, "O") +
+                    self.getnearjoe(noed, "E"))
+        if -1 < coordNear[0] < self.longeur and -1 < coordNear[1] < self.hauteur:
             return [[Who] + coordNear]
         else:
-            return [[Who] + [None]+ [None]]
+            return [[Who] + [None, None]]
 
-
-    #detruits les murs d'une cellule
     def destroy_maze_walls(self, Cell, Who=None):
-        Cell.destroy(Who)  # Détruit le mur dans la direction donnée pour la cellule actuelle
-
+        """
+        Détruit les murs de la cellule donnée et met à jour les voisins.
+        - Who: direction du mur à détruire (ou None pour tous les murs).
+        """
+        Cell.destroy(Who)  # Détruit le mur de la cellule
         voisins = self.getnearjoe(Cell, Who)  # Récupère les voisins
-        for voisin in voisins:  # Itère sur la liste des voisins
+        for voisin in voisins:
             direction, x, y = voisin
-            if x is not None and y is not None:  # Vérifie que les coordonnées sont valides
+            if x is not None and y is not None:  # Vérifie la validité des coordonnées
                 if direction == "N":
-                    self.maze[y][x].destroy("S")  # Détruit le mur Sud du voisin Nord
+                    self.maze[y][x].destroy("S")  # Mur Sud du voisin Nord
                 elif direction == "S":
-                    self.maze[y][x].destroy("N")  # Détruit le mur Nord du voisin Sud
+                    self.maze[y][x].destroy("N")  # Mur Nord du voisin Sud
                 elif direction == "O":
-                    self.maze[y][x].destroy("E")  # Détruit le mur Est du voisin Ouest
+                    self.maze[y][x].destroy("E")  # Mur Est du voisin Ouest
                 elif direction == "E":
-                    self.maze[y][x].destroy("O")  # Détruit le mur Ouest du voisin Est
+                    self.maze[y][x].destroy("O")  # Mur Ouest du voisin Est
 
 
-if __name__=="__main__":
-    #Test de fonctionnement des fonctions de base
-    Noeu = Noed(0,0)
-    print(Noeu.allwalls())
-    print(Noeu.coord())
+if __name__ == "__main__":
+    # Tests de base
+    Noeu = Noed(0, 0)
+    print(Noeu.allwalls())  # True (tous les murs intacts)
+    print(Noeu.coord())  # (0, 0)
 
+    print(Noeu.getwalls())  # {"N": True, "S": True, "E": True, "O": True}
+    Noeu.destroy("E")  # Détruit le mur Est
+    print(Noeu.getwalls())  # {"N": True, "S": True, "E": False, "O": True}
 
-    print(Noeu.getwalls())
-    Noeu.destroy("E")
-    print(Noeu.getwalls())
+    Laby = Maze(10)
+    print(Laby)  # Affichage du labyrinthe
 
-    Laby = Maze(10,10)
-    print(Laby)
-
-    print(Laby.cellule(0,0))
+    print(Laby.cellule(0, 0))  # Affiche une cellule
