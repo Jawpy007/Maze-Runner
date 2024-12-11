@@ -9,8 +9,8 @@
 **Tom**  
 - Développement de l'interface graphique (**HUD**) permettant de visualiser et interagir avec le labyrinthe.
 
-**Joe**  
-- Génération du labyrinthe et manipulation des murs à travers la fonction **MM** (MazeMaker) et d'autres fonctions associées.
+**Joe**
+- Développement de la classe Maze, génération du labyrinthe avec la fonction MM (MazeMaker) et d'autres fonctions associées.
 
 ---
 
@@ -76,7 +76,7 @@ Le module de résolution contient l'algorithme qui permet de résoudre le labyri
 
 ---
 
-### **3. Joe - Génération du Labyrinthe et Manipulation des Murs**
+### **3. Joe - Développement de la classe Maze, génération du labyrinthe avec la fonction MM (MazeMaker) et d'autres fonctions associées.**
 
 #### **Fonctions de Génération et Manipulation des Murs**
 
