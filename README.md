@@ -5,7 +5,7 @@
 
 **Jaouen**  
 - Développement des classes **Maze**, **Noed**, et **Solver**.
-- Compte rendu : En attente.
+- Compte rendu : https://docs.google.com/document/d/1SyxHGa69TocIqR_aZIuANujP6KI3cz976cAUSd2doxk/edit?usp=sharing.
 
 **Tom**  
 - Développement de l'interface graphique (**HUD**) permettant de visualiser et interagir avec le labyrinthe.
