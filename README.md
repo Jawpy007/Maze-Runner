@@ -5,12 +5,15 @@
 
 **Jaouen**  
 - Développement des classes **Maze**, **Noed**, et **Solver**.
+- Compte rendu : En attente.
 
 **Tom**  
 - Développement de l'interface graphique (**HUD**) permettant de visualiser et interagir avec le labyrinthe.
+- Compte rendu : En attente.
 
 **Joe**
 - Développement de la classe Maze, génération du labyrinthe avec la fonction MM (MazeMaker) et d'autres fonctions associées.
+- Compte rendu : https://docs.google.com/document/d/14KiPlmFL6YW6t3ie57DxXwSCzyCelZ1s0z7Xft3Eaos/edit?usp=sharing
 
 ---
 
