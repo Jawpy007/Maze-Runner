@@ -39,7 +39,7 @@ class A_Star:
         Arriver = self.Coord_Fin()
         return (round(sqrt((Depart[0]+Arriver[0])^2+(Depart[1]+Arriver[1])^2)*sqrt(2)*10))
 
-    #fonction A* , algorithme trouvé grace a des recherche internet
+    #fonction A* , algorithme trouvé grace a des recherches internet
     def solve(self):
 
         #coordonnée de debut et de fin
@@ -52,7 +52,7 @@ class A_Star:
 
 
 
-        #creation du tas, car un tas retourne de base la plus petite valeur
+        #creation du tas, car un tas a pour plus petite valeur son premier rang ( tas[0] )
         open_set = []
         #initialise la premiere valeur
         heappush(open_set,(0,Start))
@@ -111,7 +111,7 @@ class A_Star:
                     #Recuperation de la cellule apres qu'on est verifié si elle existe bien , (j'ai pris 2h a resoudre ce bug aahhhhhhh)
                     neighbor_cell = Laby.cellule(neighbor[0],neighbor[1])
 
-                    #print(neighbor in visite or Current_cell.getwalls()[Cardinal] == True)
+                    #Debug_print : print(neighbor in visite or Current_cell.getwalls()[Cardinal] == True)
                     if neighbor in visite or Current_cell.getwalls()[Cardinal] == True:#si la cellule a deja etait evalué ou n'est pas accessible alors on ne l'evalu pas
                         continue
 
@@ -132,7 +132,7 @@ class A_Star:
 
 
 
-
+#teste du code
 if __name__=="__main__":
     Laby = Maze(3, 3)
 
