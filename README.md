@@ -1,9 +1,10 @@
 # Maze-Runner
-## Maze Creating Path and Solve it
 
 ## Utilisation et setup
 
 **Pour utiliser le programme, veuillez a installer tous les fichiers et lancer le "Main.py"**
+
+## Creation d'un Maze et le resout
 
 ### Répartition des Tâches
 
