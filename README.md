@@ -14,7 +14,7 @@
 
 **Tom**  
 - Développement de l'interface graphique (**HUD**) permettant de visualiser et interagir avec le labyrinthe.
-- Compte rendu : En attente.
+- Compte rendu : https://docs.google.com/document/d/1PYk1hZKnFwYqsD70ZYsIk4jMILtvHF4tVVUkRZEMR68/edit?usp=sharing
 
 **Joe**
 - Développement de la classe Maze, génération du labyrinthe avec la fonction MM (MazeMaker) et d'autres fonctions associées.
