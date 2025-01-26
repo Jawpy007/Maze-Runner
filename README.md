@@ -2,7 +2,7 @@
 
 ## Utilisation et setup
 
-**Pour utiliser le programme, veuillez a installer tous les fichiers et lancer le "Main.py"**
+**Pour utiliser le programme, veuillez a installer tous les fichiers et lancer le "Main.py, Puis ensuite inserer la dimension du labyrinthe voulu et la seeds en dessous"**
 
 ## Creation d'un Maze et le resout
 
